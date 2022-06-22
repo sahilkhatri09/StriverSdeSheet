@@ -60,3 +60,25 @@ public:
       return dp[0][N-1];
     }
 };
+
+//iterative op one
+class Solution{
+   
+public:
+    int matrixMultiplication(int N, int arr[])
+    {
+       int dp[N][N];
+       memset(dp,0,sizeof dp);
+   
+       for(int i=N-2;i>=0;i--){
+           for(int j=i+2;j<N;j++){
+               int mini = INT_MAX;
+               for(int k=i+1;k<j;k++){
+                   mini = min(mini,dp[i][k]+dp[k][j]+arr[i]*arr[k]*arr[j]);
+               }
+               dp[i][j]=mini;
+           }
+       }
+      return dp[0][N-1];
+    }
+};
